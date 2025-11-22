@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>College Chat App</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Background video -->
+<video autoplay muted loop id="bgVideo">
+  <source src="yourVideo.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+<!-- PAGE 1: Registration -->
+<div id="registrationPopup" class="popup active">
+  <h2>Create Your Account</h2>
+  <form id="registrationForm">
+    <input type="text" id="firstName" placeholder="First Name" required />
+    <input type="text" id="lastName" placeholder="Last Name" required />
+    <input type="email" id="collegeEmail" placeholder="College Email" required />
+    <input type="password" id="password" placeholder="Password (8 chars, 1 capital, 1 special)" required pattern="(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,}" title="At least 8 characters, 1 uppercase, and 1 special character" />
+    <label for="dob" style="font-weight:bold;">Date of Birth</label>
+    <input type="date" id="dob" required />
+    <button class="gold-btn" type="submit">Next</button>
+  </form>
+</div>
+
+<!-- PAGE 2: Profile -->
+<div id="profilePopup" class="popup">
+  <h2>Complete Your Profile</h2>
+  <form id="profileForm">
+    <label for="major" style="font-weight:bold;">Major</label>
+    <select id="major" required>
+      <option disabled selected value="">Select your major</option>
+      <option>💼 Business Administration</option>
+      <option>🧠 Psychology</option>
+      <option>🧬 Biology</option>
+      <option>🩺 Nursing</option>
+      <option>💻 Computer Science</option>
+      <option>🛠️ Engineering</option>
+      <option>📚 Education</option>
+      <option>🎥 Communication / Media Studies</option>
+      <option>⚖️ Criminal Justice</option>
+      <option>💰 Finance</option>
+      <option>🏛️ Political Science</option>
+      <option>🧫 Health Sciences / Public Health</option>
+      <option>📊 Accounting</option>
+      <option>📈 Economics</option>
+      <option>✍️ English / Literature</option>
+      <option>🎨 Fine Arts</option>
+      <option>🌐 International Relations</option>
+      <option>🎭 Theatre / Performing Arts</option>
+      <option>🖌️ Graphic Design</option>
+      <option>📝 Journalism</option>
+      <option>🌱 Environmental Science</option>
+      <option>💡 Entrepreneurship</option>
+      <option>🎶 Music</option>
+      <option>⚗️ Chemistry</option>
+      <option>🔬 Physics</option>
+      <option>📐 Architecture</option>
+    </select>
+
+    <label for="year" style="font-weight:bold;">Year</label>
+    <select id="year" required>
+      <option disabled selected value="">Select your year</option>
+      <option>Freshman</option>
+      <option>Sophomore</option>
+      <option>Junior</option>
+      <option>Senior</option>
+    </select>
+
+    <label for="description" style="font-weight:bold;">User Description</label>
+    <textarea id="description" placeholder="Describe your goals, achievements, and future plans..." required></textarea>
+
+    <button class="gold-btn" type="submit">Save</button>
+  </form>
+</div>
+
+<!-- PAGE 3: Chat UI -->
+<div id="chatUI" class="chat-section hidden blur">
+  <div class="section top-controls section">
+    <div class="section-title">Controls</div>
+    <div class="top-bar">
+      <button id="modeToggle">☀️</button>
+      <select id="filterMajor">
+        <option value="all">All Majors</option>
+        <option>💻 Computer Science</option>
+        <option>💼 Business Administration</option>
+        <option>🛠️ Engineering</option>
+        <option>🧠 Psychology</option>
+        <option>🧬 Biology</option>
+        <option>⚖️ Criminal Justice</option>
+        <option>🩺 Nursing</option>
+        <option>📚 Education</option>
+        <option>🎥 Communication / Media Studies</option>
+        <option>💰 Finance</option>
+        <option>🏛️ Political Science</option>
+        <option>🧫 Health Sciences / Public Health</option>
+        <option>📊 Accounting</option>
+        <option>📈 Economics</option>
+        <option>✍️ English / Literature</option>
+        <option>🎨 Fine Arts</option>
+        <option>🌐 International Relations</option>
+        <option>🎭 Theatre / Performing Arts</option>
+        <option>🖌️ Graphic Design</option>
+        <option>📝 Journalism</option>
+        <option>🌱 Environmental Science</option>
+        <option>💡 Entrepreneurship</option>
+        <option>🎶 Music</option>
+        <option>⚗️ Chemistry</option>
+        <option>🔬 Physics</option>
+        <option>📐 Architecture</option>
+      </select>
+      <button class="start-btn" onclick="startChat()">Start</button>
+      <button class="stop-btn" onclick="stopChat()">Stop</button>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="section video-section section">
+    <div class="video-box user-video">
+      <h3>You</h3>
+      <video id="localVideo" autoplay muted></video>
+    </div>
+    <div class="video-box partner-video">
+      <h3>Partner</h3>
+      <video id="remoteVideo" autoplay></video>
+      <div id="partnerInfo" style="margin: 8px 0;"></div>
+      <div class="partner-controls">
+        <button class="gold-btn" onclick="connect()">Connect</button>
+        <button class="disconnect-btn" onclick="disconnect()">Disconnect</button>
+        <button class="gold-btn" onclick="showIcebreaker()">Icebreaker</button>
+      </div>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="section chat-section section">
+    <div class="section-title">Chat</div>
+    <div id="chatBox">
+      <div id="messages"></div>
+      <div id="chatInputContainer">
+        <input type="text" id="chatInput" placeholder="Write a message" autocomplete="off" />
+        <button id="sendBtn">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

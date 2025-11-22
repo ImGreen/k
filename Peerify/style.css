@@ -1,0 +1,129 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  color: black;
+  background: #fff;
+}
+
+body.dark-mode {
+  background: #121212;
+  color: #ddd;
+}
+
+#bgVideo {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.popup {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 360px;
+  background: white;
+  padding: 25px;
+  color: black;
+  border-radius: 12px;
+  border: 2px solid gold;
+  display: none;
+  box-shadow: 0 0 20px rgba(0,0,0,0.25);
+  z-index: 999;
+}
+.popup.active { display: block; }
+
+input, select, textarea {
+  width: 100%; padding: 10px; margin: 8px 0;
+  border-radius: 6px; border: 1px solid #888;
+}
+textarea { height: 80px; }
+
+.gold-btn {
+  width: 100%; padding: 12px;
+  background: gold; color: black;
+  border: none; border-radius: 6px; cursor: pointer; font-weight: bold;
+}
+.gold-btn:hover { background: #d4af37; }
+
+#chatUI {
+  background: rgba(255,255,255,0.95);
+  padding: 12px 15px;
+  max-width: 1000px;
+  margin: 10px auto;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+  display: flex; flex-direction: column; gap: 20px;
+  z-index: 1;
+}
+#chatUI.blur { filter: blur(6px) brightness(0.85); pointer-events: none; }
+
+.section-title { font-weight: 700; font-size: 18px; color: #444; border-bottom: 2px solid gold; padding-bottom: 4px; margin-bottom: 8px; }
+.section { padding-bottom: 15px; }
+hr { border: none; border-top: 1px solid #ddd; margin: 0; }
+
+.top-bar { display: flex; gap: 12px; align-items: center; justify-content: flex-start; }
+
+.start-btn, .stop-btn {
+  padding: 8px 16px; font-size: 14px; border-radius: 8px; border: none;
+  cursor: pointer; font-weight: 600; flex-shrink: 0;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+}
+.start-btn { background: linear-gradient(135deg, #67b26f, #4ca2cd); color: white; }
+.start-btn:hover { background: linear-gradient(135deg, #5ca260, #3a8dbd); }
+.stop-btn { background: linear-gradient(135deg, #e29587, #f1c6c0); color: white; }
+.stop-btn:hover { background: linear-gradient(135deg, #d57e70, #e0afa0); }
+
+select {
+  padding: 6px 10px; font-size: 14px; border-radius: 8px; border: 1.5px solid #ccc; min-width: 160px; cursor: pointer;
+}
+select:focus { border-color: gold; outline: none; }
+
+#modeToggle {
+  font-size: 18px; padding: 6px 10px; border: 1.5px solid black; border-radius: 6px; cursor: pointer;
+  background: white; width: 40px; height: 36px; display: flex; align-items: center; justify-content: center;
+}
+
+.video-section {
+  display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 20px;
+  flex-wrap: nowrap; padding: 20px;
+}
+
+.video-box {
+  background: rgba(255,255,255,0.9);
+  border: 2px solid gold;
+  border-radius: 12px;
+  width: 320px; height: 360px; padding: 12px; text-align: center;
+}
+
+video {
+  width: 320px; height: 320px;
+  border-radius: 10px; object-fit: cover; background: black;
+}
+
+.partner-controls { margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap; }
+.partner-controls button {
+  flex: 1; padding: 8px; border-radius: 8px; border: none; font-weight: 600;
+  cursor: pointer; background: gold; color: black; box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+.partner-controls button.disconnect-btn { background: #e65c3c; color: white; }
+.partner-controls button.disconnect-btn:hover { background: #cc4f33; }
+.partner-controls button:hover { background: #d4af37; }
+
+#chatBox { flex: 1; display: flex; flex-direction: column; border: 2px solid gold; border-radius: 12px; background: white; }
+#messages { flex-grow: 1; padding: 12px; overflow-y: auto; font-size: 14px; line-height: 1.4; color: black; }
+#messages div { margin-bottom: 8px; }
+#messages span.name.you { color: #4ca2cd; font-weight: 700; margin-right: 6px; }
+#messages span.name.partner { color: #e74c3c; font-weight: 700; margin-right: 6px; }
+
+#chatInputContainer { display: flex; border-top: 1px solid #ddd; }
+#chatInput { flex-grow: 1; padding: 10px 12px; border: none; border-radius: 0 0 0 12px; font-size: 14px; outline: none; }
+#sendBtn { background: gold; border: none; padding: 0 20px; cursor: pointer; font-weight: 700; color: black; border-radius: 0 0 12px 0; transition: background 0.3s; }
+#sendBtn:hover { background: #d4af37; }
+
+@media (max-width: 720px) {
+  .video-section { flex-direction: column; }
+  video { width: 240px; height: 240px; }
+  .video-box { width: 240px; height: 280px; }
+}
